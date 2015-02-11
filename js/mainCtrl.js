@@ -1,5 +1,5 @@
 var app = angular.module('quoteBook');
 
-app.controller('mainCtrl', function($scope) {
-	$scope.test = 'farty knockee';
+app.controller('mainCtrl', function($scope, mainService) {
+	$scope.test = mainService.getUsers();
 });
