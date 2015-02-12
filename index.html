@@ -1,37 +1,79 @@
 <!DOCTYPE html>
 <html ng-app="quoteBook">
 <head>
-	<title>QuoteBook</title>
+	<title>Quote Book</title>
+	<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body ng-controller="mainCtrl">
-	
+<header class="header">Welcome to your custom quote book</header>
+  <div class="content white">
 
-
-
- var quotes = [
-    { text: 'Life isn\'t about getting and having, it\'s about giving and being.', author: 'Kevin Kruse'},
-    { text: 'Whatever the mind of man can conceive and believe, it can achieve', author: 'Napoleon Hill'},
-    { text: 'Strive not to be a success, but rather to be of value.', author: 'Albert Einstein'},
-    { text: 'Two roads diverged in a wood, and I took the one less traveled by, And that has made all the difference.', author: 'Robert Frost'},
-    { text: 'The most difficult thing is the decision to act, the rest is merely tenacity.', author: 'Amelia Earhart'},
-    { text: 'Life is what happens to you while you\'re busy making other plans.', author: 'John Lennon'},
-    { text: 'What even is a jQuery?', author: 'Tyler S. McGinnis'}
-  ];
 
   <div ng-repeat="quote in quotes">
-  	<h1>{{quote.text}} {{quote.author}}</h1>
+  	<h1>{{quote.text}}</h1>
+  	<h1>{{quote.author}}</h1>
   	<hr>
   </div>
 
-<button class="btn btn-info btn-block" ng-click="addQuote()">Add Quote</button>
-<button class="btn btn-info btn-block" ng-click="removeQuote()">Remove Quote</button>
-<button class="btn btn-info btn-block" ng-click="filterQuotes()">Filter Quotes</button>
+<button ng-click="showAddQuote = !showAddQuote; showRemoveQuote = 0; showFilterQuote = 0">Allow/Don't Allow Adding of Quotes</button>
+<div class="row" ng-show="showAddQuote">
+<div class="col-md-6">
+  <div class="panel panel-primary">             
+		<div class="panel-body">
+  		<form class="form">
+    		<div class="form-group">
+      		<label>Add a Quote you nice person you!</label>
+        		<input type="text" placeholder="quote" ng-model="newQuote.quote">
+        		<input type="text" placeholder="author" ng-model="newQuote.author">
+          		<button class="btn btn-info btn-block" ng-click="addData(newQuote.quote, newQuote.author)">Add Quote</button>
+    		</div>
+  		</form>
+		</div>
+	</div>
+</div>
+</div>
+
+<button ng-click="showRemoveQuote = !showRemoveQuote; showAddQuote = 0; showFilterQuote = 0">Allow/Don't Allow Removing of Quotes</button>
+<div class="row" ng-show="showRemoveQuote">
+<div class="col-md-6">
+  <div class="panel panel-primary">             
+		<div class="panel-body">
+  		<form class="form">
+    		<div class="form-group">
+      		<label>Remove a Quote you mean person you!</label>
+        		<input type="text" placeholder="quote" ng-model="removeData.quote">
+          		<button class="btn btn-info btn-block" ng-click="removeData(removeData.quote)">Remove Quote</button>
+    		</div>
+  		</form>
+		</div>
+	</div>
+</div>
+</div>
+
+<button ng-click="showFilterQuote = !showFilterQuote; showAddQuote = 0; showRemoveQuote = 0">Allow/Don't Allow Filtering of Quotes</button>
+<div class="row" ng-show="showFilterQuote">
+<div class="col-md-6">
+  <div class="panel panel-primary">             
+		<div class="panel-body">
+  		<form class="form">
+    		<div class="form-group">
+      		<label>Filter these Quotes you curious person you!</label>
+        		<input type="text" placeholder="quote" ng-model="filterQuote.filterData">
+          		<button class="btn btn-info btn-block" ng-click="filterQuote()">Filter Quote</button>
+    		</div>
+  		</form>
+		</div>
+	</div>
+</div>
+</div>
+</div>
 
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular.min.js"></script>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.12/angular.min.js"></script>
 <script src="js/app.js"></script>
-<script src="js/dataService.js"></script>
 <script src="js/mainCtrl.js"></script>
+<script src="js/dataService.js"></script>
 </body>
 </html>
